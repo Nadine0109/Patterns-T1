@@ -9,7 +9,7 @@ branches:
 build: off
 
 install:
-  - java -jar artifacts/app-card-delivery.jar &
+  - java -jar artifacts/app-card-delivery.jar -port=7777 &
 
 build_script:
   - chmod +x gradlew &
