@@ -3,6 +3,7 @@ package ru.netology.delivery.test;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.Keys;
 import ru.netology.delivery.data.GenerateData;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -106,6 +107,7 @@ class DeliveryTest {
         $("[data-test-id='date'] .input__sub").shouldBe(visible).
                 shouldHave(exactText("Заказ на выбранную дату невозможен"));
     }
+
     @Test
     void shouldTestTheSameDateAsToday() {
         $("[data-test-id='city']").$("[placeholder='Город']").setValue(GenerateData.generateValidCity());
@@ -159,8 +161,8 @@ class DeliveryTest {
     @Test
     void shouldAddPlusToPhone() {
         String validPhone = GenerateData.generatePhone();
-        String withoutPlusPhone = validPhone.substring(1,12);
-        validPhone = validPhone.replaceAll("\\s","");
+        String withoutPlusPhone = validPhone.substring(1, 12);
+        validPhone = validPhone.replaceAll("\\s", "");
         $("[data-test-id='phone']").$("[name='phone']").setValue(withoutPlusPhone);
         $("[data-test-id='phone']").$("[name='phone']").
                 shouldHave(value(GenerateData.formatPhone(validPhone)));
@@ -182,7 +184,7 @@ class DeliveryTest {
                 generateDate(GenerateData.generateRandomDateShift()));
         $("[data-test-id= 'name']").$("[name ='name']").setValue(GenerateData.generateName("ru"));
         String validPhone = GenerateData.generatePhone();
-        String invalidPhone = validPhone.substring(0,11);
+        String invalidPhone = validPhone.substring(0, 11);
         $("[data-test-id='phone']").$("[name='phone']").setValue(invalidPhone);
         $("[data-test-id='agreement']").click();
         $$("button").find(exactText("Запланировать")).click();
